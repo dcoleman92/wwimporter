@@ -1,0 +1,21 @@
+
+  <head>
+
+  </head>
+
+      <div class="col-md-5 item body2" ><img [src]='item.imagelink' height="100" width="100"/></div>
+
+    <div class="col-md-5 body2 item">
+
+    <div>Name: {{item.name}}</div>
+    <div>Description: {{item.description}}</div>
+    <div>Price: {{item.price}}</div>
+    <div>Rating: {{item.rating}}/5</div>
+    <div>Stock: {{item.stock}}</div>
+    <a class="btn btn-primary"(click)="addtoCart(item)">Add</a>
+    <br>
+    <br>
+
+    </div>
+
+

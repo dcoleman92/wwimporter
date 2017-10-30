@@ -1,0 +1,31 @@
+
+#underline{
+  border-bottom:solid;
+  padding:8px;
+
+}
+#border {
+  border-style:solid;
+  background-color:white;
+  padding-right:10px;
+  padding-left:10px;
+  padding-bottom:10px;
+}
+input[type=text] {
+  width:100%;
+  padding:12px 20px;
+  margin:8px 0;
+  box-sizing:border-box;
+
+}
+.shipping{
+  border-bottom:solid;
+  text-align:center;
+  padding:5px;
+
+}
+.col-md-1{
+padding:10px;
+}
+
+

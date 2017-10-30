@@ -1,0 +1,76 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <h4 class="shipping" style="text-align: left;">Your Shopping Cart!</h4>
+      <div class="col-md-6">
+        <div class="row">
+          <div id="underline" class="col-md-2">
+            Image
+          </div>
+          <div id="underline"  class="col-md-2">
+            Name
+          </div>
+          <div id="underline"  class="col-md-2">
+            Price
+          </div>
+          <div id="underline" class="col-md-2">
+            Qty
+          </div>
+          <div id="underline" class="col-md-2">
+            Remove
+          </div>
+        </div>
+        <div class="row" *ngFor="let c of cart">
+
+          <div class="col-md-2">
+              <img [src]='c.item.imagelink' height="30" width="30"/>
+          </div>
+          <div class="col-md-2">
+            {{c.item.name}}
+          </div>
+          <div  class="col-md-2">
+            ${{currentPrice(c) | number:'1.2-2'}}
+          </div>
+          <div class="col-md-2">
+              {{c.quantity}}<a (click)="upQuantity(c.item)" class="glyphicon glyphicon-arrow-up"></a>
+              <a (click)="downQuantity(c.item)" class="glyphicon glyphicon-arrow-down"></a>
+           </div>
+          <div class="col-md-2">
+            <a (click)="removeFromCart(c.item)" class="	glyphicon glyphicon-remove-circle"></a>
+          </div>
+
+        </div>
+
+      </div>
+      <div id="border" class="col-md-6">
+       <div style="padding:10px;" class="shipping" id="underline">Enter Shipping Details</div> <br>
+        <br>
+        <form>
+          Name: <br>
+          <input type="text" name="name" placeholder="Name"><br>
+          Address: <br>
+          <input type="text" address="address" placeholder="Address"><br>
+          City: <br>
+          <input type="text" city="city" placeholder="City"><br>
+          Phone: <br>
+          <input type="text" phone="phonenumber" placeholder="Phone"><br>
+        </form>
+        <br>
+        <div>
+          <div>Subtotal:${{getPrice() | number:'1.2-2'}} </div>
+          Shipping:$6 <br>
+          Tax(10%):${{getPrice() * .10 | number:'1.2-2'}}  <br>
+          <hr/>
+        </div>
+
+          Total:${{getPrice()+ (getPrice() * .10) + 6 | number:'1.2-2'}}
+          <button class="btn btn-primary">Submit</button>
+      </div>
+
+
+
+
+  </body>
+</html>

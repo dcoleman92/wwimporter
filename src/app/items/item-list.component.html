@@ -1,0 +1,66 @@
+<html>
+
+<head>
+
+</head>
+<body id="doc3">
+<h1 class="listopro">List of Products</h1>
+<hr/>
+<h2 id="category">Products:</h2>
+<ul class="nav nav-tabs">
+  <li class="active" *ngFor="let cat of category; let j = index;">
+    <a data-toggle="tab" (click)="setCat(cat)">{{cat.category}}</a>
+  </li>
+</ul>
+
+<div class="tab-content" [hidden]="selectedCat==null" *ngIf="!isSingle">
+  <div id="home" class="tab-pane fade in active">
+    <h3 class="catli">{{selectedCat.category}}</h3>
+    <div><select [(ngModel)]="selectFilter" (change)="filterBy()">
+      <option [value]="2"> Order Descending by price</option>
+      <option [value]="3"> Order Ascending by price</option>
+      <option [value]="4"> Sort by Stock</option>
+      <option [value]="5"> Sort Alphabetically</option>
+      <option [value]="6"> Sort by Rating</option>
+      </select></div>
+      <hr/>
+
+    <ul class="nav nav-pills nav-stacked">
+        <li class="subcatli" *ngFor="let item of selectedCat.subcategories; let j = index;" >
+
+            <a class="cata" data-toggle="collapse" (click)="showSubmenu(j)">{{item.name}}</a>
+
+            <div style="padding: 25px 25px 25px 50px;display:none;" id="submenu{{j}}">
+            <ul>
+              <li *ngFor="let prod of item.items" [hidden]="prod.stock==0&&selectFilter==4" >
+                <div class="container">
+                    <img [src]='prod.imagelink' height="60" width="60"/>
+                </div>
+                <div >Name:<a (click)="goToItem(prod)">{{prod.name}}</a></div>
+                <br>
+                Description:{{prod.description}}
+                <br>
+                Price:{{prod.price | currency:'USD': true}}
+                <br>
+                Stock:{{prod?.stock}}
+                <br/>
+                <button (click)="addtoCart(prod)"class="btn btn-primary" style="margin-bottom:19px">Add</button>
+
+              </li>
+            </ul>
+            </div>
+      </li>
+      </ul>
+  </div>
+</div>
+
+<div class="body2" [hidden]="selectedCat==null" *ngIf="isSingle">
+    <a class="btn btn-primary" (click)="cancelGoToItem()">Go back to Items</a>
+    <hr/>
+<item-thumbnail  (cancelGoToItem)="cancelGoToItem()" [item]="selectedItem"></item-thumbnail>
+</div>
+
+</body>
+
+
+</html>
