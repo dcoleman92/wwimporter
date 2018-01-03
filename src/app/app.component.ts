@@ -6,6 +6,7 @@ import {Http} from '@angular/http'
   template:`
   <nav-bar></nav-bar>
   <router-outlet></router-outlet>
+  <footer-com></footer-com>
   `,
   styleUrls: ['./app.component.css']
 })

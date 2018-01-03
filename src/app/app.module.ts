@@ -7,6 +7,7 @@ import {DecimalPipe} from '@angular/common'
 import {routing} from './route'
 
 import { NavbarComponent} from './nav/navbar.component'
+import {FooterComponent} from './footer/footer.component'
 import { HomePageAppComponent} from './homepage.component'
 import { ItemListComponent} from './items/item-list.component'
 import { CategoryComponent} from './items/category-list.component'
@@ -14,6 +15,8 @@ import {ItemThumbnailComponent} from './items/item-thumbnail.component'
 import {CarouselComponent} from './carousel/carousel.component'
 import {printSlide} from './carousel/safehtml.pipe'
 import {CartComponent} from './shoppingcart/cart.component'
+import { AboutUsComponent } from './footer/aboutus.component';
+import {ContactComponent} from './footer/contactus.component'
 
 import { ItemService} from './items/item.service'
 import {ItemResolver} from './items/item-resolver.service'
@@ -26,18 +29,22 @@ import {CartService} from './shoppingcart/shoppingcart.service'
 
 import { AppComponent } from './app.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HomePageAppComponent,
     NavbarComponent,
+    FooterComponent,
     ItemListComponent,
     CategoryComponent,
     ItemThumbnailComponent,
     CarouselComponent,
     printSlide,
     SafeHtmlPipe,
-    CartComponent
+    CartComponent,
+    AboutUsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

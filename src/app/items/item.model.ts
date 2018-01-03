@@ -78,4 +78,12 @@ export class ShoppingCart {
   }
 }
 
+export class MetaItem {
+  imgSrc: string="";
+  sType: string = "";
+  imagelink: string[] = [];
+
+  constructor() {
+  }
+}
 

@@ -32,3 +32,6 @@ html, body {
   margin-right: 10px;
   margin-left: 10px;
 }
+footer {
+  border-top-width: 10px;
+}

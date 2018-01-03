@@ -1,5 +1,7 @@
 import {Component,ElementRef, Renderer, Input, Output, Optional, EventEmitter, ViewEncapsulation} from '@angular/core'
-import {Item, Category,SubCategory} from '../items/item.model'
+import {Http, Response, Headers, RequestOptions} from '@angular/http'
+import {Item, Category,SubCategory, MetaItem} from '../items/item.model'
+import {ItemService} from '../items/item.service'
 
 @Component({
   selector:'carousel',
@@ -20,17 +22,9 @@ export class CarouselComponent{
 
   @Input('playInterval') interval:any = 2000;
   slides:any;
-  items:Item[];
+  items:MetaItem[] = [];
   category: Category[];
   subcategory:SubCategory[];
-
-  @Input("items") set _slides(s){
-      this.items = s;
-      console.log(this.items);
-      this.number = this.items.length;
-      if(this.items.length)
-          this.items[0]["imagelink"] = ["active"];
-  }
 
   @Input('autoPlay') set _autoPlay(b:boolean){
       this.autoPlay = b
@@ -41,33 +35,58 @@ export class CarouselComponent{
   currentElement:number = 0;
   autoPlay = false;
   number:number=0;
-  //lis:number = 0;
-  intervalTime:number = 1000;//in ms(mili seconds)
+
+  intervalTime:number = 5000;//in ms(mili seconds)
   private delayHideSetTimeOutControl:any;
-  constructor(){
-      //this.slideShow=document.getElementById("slideShow");
 
-      //this.lis = this.slides.length;
-
-      //this.number=this.lis.length;
+  constructor(private iService: ItemService){
+    this.iService.getItems().then(r => this.callback(r));
   }
+
+  callback(r: Response): void {
+    if (r.ok === true) {
+      this.category = [];
+
+      let alms = r.json();
+        for (let a in alms) {
+          this.category.push(Category.fromJSON(alms[a]));
+      }
+
+      for(let i = 0; i < this.category.length; i++){
+        for(let j = 0; j < this.category[i].subcategories.length; j++){
+          for(let k = 0; k < this.category[i].subcategories[j].items.length; k++){
+            let meta: MetaItem;
+            meta = new MetaItem();
+            meta.imgSrc = this.category[i].subcategories[j].items[k].imagelink;
+            meta.sType = "img";
+            meta.imagelink = [];
+            this.items.push(meta);
+          }
+        }
+      }
+      this.number = this.items.length;
+    }
+  }
+
+
   backWard(){
-      if(this.autoPlay)
+      if(this.autoPlay){
           clearInterval(this.interval);
+      }
       this.currentElement=this.currentElement-1;
       if(this.currentElement<0){
           this.currentElement=this.number-1;
       }
       this.removeClasses();
       var prev=this.currentElement==this.number-1?0:this.currentElement+1;
-      //this.lis[prev].classList.add("animateForward");
-      this.slides[prev].classes = ["animateForward"];
+     // this.items[prev].classList.add("animateForward");
+      this.items[prev].imagelink = ["animateForward"];
       this.show(this.items[prev]);
       this.show(this.items[this.currentElement]);
 
       clearTimeout(this.delayHideSetTimeOutControl);
 
-      this.delayHideSetTimeOutControl=this.delayHide(this.items[prev],1100);
+      this.delayHideSetTimeOutControl=this.delayHide(this.items[prev],300);
       //this.lis[this.currentElement].classList.add("active");
       this.items[this.currentElement].imagelink = ["active","backward"];
       //this.lis[this.currentElement].classList.add("backward");
@@ -76,7 +95,7 @@ export class CarouselComponent{
 
   removeClasses(){
       for(var i=0;i<this.number;i++){
-          this.items[i].imagelink = {}
+          this.items[i].imagelink = []
       }
   }
   forWard(){
@@ -101,7 +120,7 @@ export class CarouselComponent{
       this.show(this.items[this.currentElement]);
 
       clearTimeout(this.delayHideSetTimeOutControl);
-      this.delayHideSetTimeOutControl=this.delayHide(this.items[prev],1100);
+      this.delayHideSetTimeOutControl=this.delayHide(this.items[prev],300);
       //this.lis[this.currentElement].classList.add("active");
       //this.lis[this.currentElement].classList.add("forward");
       this.items[this.currentElement].imagelink = ["active","forward"];

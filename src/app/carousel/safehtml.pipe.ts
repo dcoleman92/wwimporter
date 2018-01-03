@@ -14,7 +14,7 @@ export class SafeHtmlPipe implements PipeTransform  {
         <div *ngIf="meta.sType=='div'" [innerHtml]="meta.content | safeHtml">
 
         </div>
-        <img [src]="meta.imgSrc" *ngIf="meta.sType=='img'" />
+        <div style="display:block;width:920px;text-align:center;"><img [src]="meta.imgSrc" *ngIf="meta.sType=='img'" style="height:200px;" /></div>
     `
 })
 export class printSlide{
