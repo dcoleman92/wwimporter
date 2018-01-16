@@ -2,12 +2,17 @@ import {Injectable} from '@angular/core'
 import {ShoppingCart, Item} from '../items/item.model'
 import {Http, Response, Headers, RequestOptions} from '@angular/http'
 import {Observable} from 'rxjs/Rx'
+import {FormsModule} from '@angular/forms'
+import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { Checkout} from './checkout.model'
+import {CartComponent} from './cart.component'
 
 @Injectable()
 
 export class CartService{
   private readonly projectsKey: string = 'SC';
   _shoppingCart: ShoppingCart[] = [];
+  checkout: Checkout;
 
   constructor() {
     const shoppingCart: any = localStorage.getItem(this.projectsKey);
@@ -76,4 +81,8 @@ export class CartService{
   public get cart(): ShoppingCart[] {
     return this._shoppingCart;
   }
+
+  
+
+  
 }

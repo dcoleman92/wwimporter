@@ -9,9 +9,13 @@
 
     <div>Name: {{item.name}}</div>
     <div>Description: {{item.description}}</div>
-    <div>Price: {{item.price}}</div>
+    <div>Price: {{item.price | currency:'USD': true}}</div>
     <div>Rating: {{item.rating}}/5</div>
     <div>Stock: {{item.stock}}</div>
+    <div class="col-md-2">
+      {{c.quantity}}<a (click)="upQuantity(c.item)" class="glyphicon glyphicon-arrow-up"></a>
+      <a (click)="downQuantity(c.item)" class="glyphicon glyphicon-arrow-down"></a>
+   </div>
     <a class="btn btn-primary"(click)="addtoCart(item)">Add</a>
     <br>
     <br>

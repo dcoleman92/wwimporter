@@ -16,7 +16,7 @@
 <div class="tab-content" [hidden]="selectedCat==null" *ngIf="!isSingle">
   <div id="home" class="tab-pane fade in active">
     <h3 class="catli">{{selectedCat.category}}</h3>
-    <div><select [(ngModel)]="selectFilter" (change)="filterBy()">
+    <div>Filters: <select [(ngModel)]="selectFilter" (change)="filterBy()">
       <option [value]="2"> Order Descending by price</option>
       <option [value]="3"> Order Ascending by price</option>
       <option [value]="4"> Sort by Stock</option>

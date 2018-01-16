@@ -20,4 +20,14 @@ export class ItemThumbnailComponent{
   addtoCart(p: Item){
     this.cartService.addtoCart(p);
   }
+
+  upQuantity(p: Item){
+    this.cartService.addtoCart(p);
+  
+  }
+  downQuantity(p:Item){
+    this.cartService.removeSingleFromCart(p)
+  }
+
+  
 }

@@ -17,7 +17,7 @@ import {Component} from '@angular/core'
     </div>
     </form>
 
-    <button class="btn btn-primary">Submit</button>
+    <a class="btn btn-primary" type="submit" href="thanks">Submit</a>
     </div>
     
     `,

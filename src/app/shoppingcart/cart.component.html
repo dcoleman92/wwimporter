@@ -47,26 +47,25 @@
       <div id="border" class="col-md-6">
        <div style="padding:10px;" class="shipping" id="underline">Enter Shipping Details</div> <br>
         <br>
-        <form>
           Name: <br>
-          <input type="text" name="name" placeholder="Name"><br>
+          <input type="text" name="name" placeholder="Name" id="name" [(ngModel)]="checkout.name" required ><br>
           Address: <br>
-          <input type="text" address="address" placeholder="Address"><br>
+          <input type="text" name="address" placeholder="Address" id="address" [(ngModel)]="checkout.address" required><br>
           City: <br>
-          <input type="text" city="city" placeholder="City"><br>
+          <input type="text" name="city" placeholder="City" id="city" [(ngModel)]="checkout.city" required><br>
           Phone: <br>
-          <input type="text" phone="phonenumber" placeholder="Phone"><br>
-        </form>
+          <input type="text" name="phonenumber" placeholder="Phone" id="phone" [(ngModel)]="checkout.phonenumber" required><br>
+          <button class="btn btn-primary" (click)="checkOut()">Submit</button>
         <br>
         <div>
           <div>Subtotal:${{getPrice() | number:'1.2-2'}} </div>
-          Shipping:$6 <br>
+          Shipping:$10 <br>
           Tax(10%):${{getPrice() * .10 | number:'1.2-2'}}  <br>
           <hr/>
         </div>
 
-          Total:${{getPrice()+ (getPrice() * .10) + 6 | number:'1.2-2'}}
-          <button class="btn btn-primary">Submit</button>
+          Total:${{getPrice()+ (getPrice() * .10) + 10 | number:'1.2-2'}}
+          
       </div>
 
 

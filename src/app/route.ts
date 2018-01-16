@@ -6,6 +6,9 @@ import {CartComponent} from './shoppingcart/cart.component'
 import {ItemThumbnailComponent} from'./items/item-thumbnail.component'
 import {AboutUsComponent} from './footer/aboutus.component'
 import {ContactComponent} from './footer/contactus.component'
+import { ThankComponent } from './footer/thankyou.component';
+import {CheckoutComponent} from './shoppingcart/checkout.component'
+
 const appRoutes:Routes = [
   {path:'items', component:ItemListComponent},
   {path:'', redirectTo: '/home', pathMatch: 'full'},
@@ -13,6 +16,8 @@ const appRoutes:Routes = [
   {path:'cart', component:CartComponent},
   {path:'item', component:ItemThumbnailComponent},
   {path: 'aboutus', component:AboutUsComponent},
-  {path: 'contact', component:ContactComponent}
+  {path: 'contact', component:ContactComponent},
+  {path: 'thanks', component:ThankComponent},
+  {path: 'checkout', component:CheckoutComponent}
 ]
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

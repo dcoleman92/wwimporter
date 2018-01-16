@@ -17,6 +17,7 @@ import {printSlide} from './carousel/safehtml.pipe'
 import {CartComponent} from './shoppingcart/cart.component'
 import { AboutUsComponent } from './footer/aboutus.component';
 import {ContactComponent} from './footer/contactus.component'
+import {CarouselModule} from 'angular4-carousel'
 
 import { ItemService} from './items/item.service'
 import {ItemResolver} from './items/item-resolver.service'
@@ -24,7 +25,8 @@ import {CategoryService} from './items/category.service'
 import {CategoryResolver} from './items/category-resolver.service'
 import {SafeHtmlPipe} from './carousel/safehtml.pipe'
 import {CartService} from './shoppingcart/shoppingcart.service'
-
+import {ThankComponent} from './footer/thankyou.component'
+import {CheckoutComponent} from './shoppingcart/checkout.component'
 
 
 import { AppComponent } from './app.component';
@@ -44,21 +46,26 @@ import { AppComponent } from './app.component';
     SafeHtmlPipe,
     CartComponent,
     AboutUsComponent,
-    ContactComponent
+    ContactComponent,
+    ThankComponent,
+    CheckoutComponent,
+    
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     routing,
-    RouterModule
+    RouterModule,
+    CarouselModule
   ],
   providers: [
     ItemService,
     ItemResolver,
     CategoryResolver,
     CategoryService,
-    CartService
+    CartService,
+    CartComponent
 
   ],
   bootstrap: [AppComponent]
