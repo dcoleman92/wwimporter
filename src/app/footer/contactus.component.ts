@@ -6,10 +6,10 @@ import {Component} from '@angular/core'
     <div style="padding:10px;" id="border">
     <form>
     <div class="form-group">
-    Username: <input type="text" name="username" placeholder="Username">
+    Username: <input type="text" name="username" placeholder="Username" required>
     </div>
     <div class="form-group">
-    Email Address: <input type="email" name="email" placeholder="Email">
+    Email Address: <input type="email" name="email" placeholder="Email" required>
     </div>
     <div class="form-group">
     Information:

@@ -47,6 +47,7 @@
       <div id="border" class="col-md-6">
        <div style="padding:10px;" class="shipping" id="underline">Enter Shipping Details</div> <br>
         <br>
+        <form ngNativeValidate>
           Name: <br>
           <input type="text" name="name" placeholder="Name" id="name" [(ngModel)]="checkout.name" required ><br>
           Address: <br>
@@ -55,7 +56,8 @@
           <input type="text" name="city" placeholder="City" id="city" [(ngModel)]="checkout.city" required><br>
           Phone: <br>
           <input type="text" name="phonenumber" placeholder="Phone" id="phone" [(ngModel)]="checkout.phonenumber" required><br>
-          <button class="btn btn-primary" (click)="checkOut()">Submit</button>
+          <button class="btn btn-primary" (click)="checkOut()">Checkout</button>
+        </form>
         <br>
         <div>
           <div>Subtotal:${{getPrice() | number:'1.2-2'}} </div>

@@ -28,4 +28,9 @@ input[type=text] {
 padding:10px;
 }
 
+.error {
+  background-color:rgb(247, 15, 30);
+  color: rgb(255, 1, 1);
+}
+
 

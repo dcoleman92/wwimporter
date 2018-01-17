@@ -27,6 +27,7 @@ import {SafeHtmlPipe} from './carousel/safehtml.pipe'
 import {CartService} from './shoppingcart/shoppingcart.service'
 import {ThankComponent} from './footer/thankyou.component'
 import {CheckoutComponent} from './shoppingcart/checkout.component'
+import {AngularFontAwesomeModule} from 'angular-font-awesome'
 
 
 import { AppComponent } from './app.component';
@@ -57,7 +58,8 @@ import { AppComponent } from './app.component';
     FormsModule,
     routing,
     RouterModule,
-    CarouselModule
+    CarouselModule,
+    AngularFontAwesomeModule
   ],
   providers: [
     ItemService,

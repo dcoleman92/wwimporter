@@ -14,6 +14,7 @@ import {Router, ActivatedRoute} from '@angular/router'
   styleUrls: ['cart.css']
 })
 export class CartComponent implements OnInit{
+  isDirty: boolean = true;
   cart : ShoppingCart[] = [];
   checkout: Checkout;
   private readonly CheckoutKey: string = 'C';
@@ -53,9 +54,13 @@ clearCart(c:Item): void {
   this.cartService.clearCart(c);
 }
 checkOut() : any {
+  if(this.checkout.name == undefined || this.checkout.address == undefined || this.checkout.city == undefined || this.checkout.phonenumber == undefined){
+    return;
+  }
   localStorage.setItem(this.CheckoutKey, JSON.stringify(this.checkout))
 
   const chkout : any = localStorage.getItem(this.CheckoutKey) 
+  
   if(chkout){
     this.checkout = JSON.parse(chkout)
     this.router.navigate(['/checkout'])

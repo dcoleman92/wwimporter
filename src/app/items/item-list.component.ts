@@ -51,7 +51,26 @@ export class ItemListComponent implements OnInit
       this.message = r.statusText
     }
   }
+  catCallback(r: Response): void {
+    if (r.ok === true) {
+      this.category = [];
 
+      let alms = r.json();
+        for (let a in alms) {
+          this.category.push(Category.fromJSON(alms[a]));
+      }
+      for(let i = 0; i < this.category.length;i++){
+          if (this.category[i].category   == this.selectedCat.category){
+              this.setCat(this.category[i]);
+            
+            break;
+          }
+      }
+    }
+    else {
+      this.message = r.statusText
+    }
+  }
   setCat(s: Category): void{
     this.selectedCat = s;
     this.selectedSubCat = new SubCategory();
@@ -67,6 +86,9 @@ export class ItemListComponent implements OnInit
   filterBy(): void{
 
       for(let i = 0; i < this.selectedCat.subcategories.length;i++){
+        if (this.selectFilter =="1") {
+          this.iService.getItems().then(r => this.catCallback(r)).catch(r => this.errorCallback(r));
+        }
         if (this.selectFilter == "2"){
           this.selectedCat.subcategories[i].items = this.selectedCat.subcategories[i].items.sort(function (a: Item, b: Item) {
             if (a.price > b.price) return -1;
@@ -83,7 +105,6 @@ export class ItemListComponent implements OnInit
         }
         else if(this.selectFilter == "4"){
 
-
         }
         else if(this.selectFilter == "5"){
           this.selectedCat.subcategories[i].items = this.selectedCat.subcategories[i].items.sort(function (a:Item, b:Item){
@@ -94,8 +115,8 @@ export class ItemListComponent implements OnInit
         }
         else if(this.selectFilter == "6"){
           this.selectedCat.subcategories[i].items = this.selectedCat.subcategories[i].items.sort(function (a:Item, b:Item){
-            if(a.rating < b.rating) return -1;
-            if(a.rating > b.rating) return 1;
+            if(a.rating > b.rating) return -1;
+            if(a.rating < b.rating) return 1;
           })
 
         }

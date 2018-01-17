@@ -17,9 +17,10 @@
   <div id="home" class="tab-pane fade in active">
     <h3 class="catli">{{selectedCat.category}}</h3>
     <div>Filters: <select [(ngModel)]="selectFilter" (change)="filterBy()">
+      <option [value]="1"> None</option>
       <option [value]="2"> Order Descending by price</option>
       <option [value]="3"> Order Ascending by price</option>
-      <option [value]="4"> Sort by Stock</option>
+      <option [value]="4"> In Stock Only</option>
       <option [value]="5"> Sort Alphabetically</option>
       <option [value]="6"> Sort by Rating</option>
       </select></div>
@@ -43,6 +44,8 @@
                 Price:{{prod.price | currency:'USD': true}}
                 <br>
                 Stock:{{prod?.stock}}
+                <br>
+                Rating:{{prod.rating}}
                 <br/>
                 <button (click)="addtoCart(prod)"class="btn btn-primary" style="margin-bottom:19px">Add</button>
 
