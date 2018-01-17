@@ -57,34 +57,9 @@ export class CarouselComponent{
   
 
   constructor(private iService: ItemService, private carouselService: CarouselService){
-    this.iService.getItems().then(r => this.callback(r));
+    //this.iService.getItems().then(r => this.callback(r));
   
 }
-
-  callback(r: Response): void {
-    if (r.ok === true) {
-      this.category = [];
-
-      let alms = r.json();
-        for (let a in alms) {
-          this.category.push(Category.fromJSON(alms[a]));
-      }
-
-      for(let i = 0; i < this.category.length; i++){
-        for(let j = 0; j < this.category[i].subcategories.length; j++){
-          for(let k = 0; k < this.category[i].subcategories[j].items.length; k++){
-            let meta: MetaItem;
-            meta = new MetaItem();
-            meta.imgSrc = this.category[i].subcategories[j].items[k].imagelink;
-            meta.sType = "img";
-            meta.imagelink = [];
-            this.items.push(meta);
-          }
-        }
-      }
-      this.number = this.items.length;
-    }
-  }
 
 
   
