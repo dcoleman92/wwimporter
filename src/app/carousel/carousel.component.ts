@@ -35,14 +35,14 @@ export class CarouselComponent{
       '/assets/featured/babystroller.png',
       '/assets/featured/babybib.png'
   ];
-  public carouselState(): void{
+  public carouselState(){
     if(this.checkboxValue){
-      this.config.autoplay = true
+       this.config.autoplay= true;
     }
     else{
-      this.config.autoplay = false
+      this.config.autoplay = false;
     }
-  }
+}
 
   public config: ICarouselConfig = {
       verifyBeforeLoad: true,
@@ -51,13 +51,14 @@ export class CarouselComponent{
       animationType: AnimationConfig.SLIDE,
       autoplay: this.checkboxValue,
       autoplayDelay:3000,
-      stopAutoplayMinWidth: 768
+      stopAutoplayMinWidth: 768 //768
   }
 
   
 
   constructor(private iService: ItemService, private carouselService: CarouselService){
     //this.iService.getItems().then(r => this.callback(r));
+    this.carouselState
   
 }
 

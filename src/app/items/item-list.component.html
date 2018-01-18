@@ -35,7 +35,7 @@
             <ul>
               <li *ngFor="let prod of item.items" [hidden]="prod.stock==0&&selectFilter==4" >
                 <div class="container">
-                    <img [src]='prod.imagelink' height="60" width="60"/>
+                    <a (click)="goToItem(prod)"><img [src]='prod.imagelink' height="60" width="60"/></a>
                 </div>
                 <div >Name:<a (click)="goToItem(prod)">{{prod.name}}</a></div>
                 <br>
